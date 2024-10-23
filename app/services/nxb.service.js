@@ -2,13 +2,14 @@ const { ObjectId } = require("mongodb");
 
 class ContactService {
     constructor(client) {
-        this.Contact = client.db().collection("account");
+        this.Contact = client.db().collection("nxb");
     }
     //dinh nghia cac phuong thuc truy xuat csdl su dung mongodb api
     extractConactData(payload) {
         const contact = {
-            username: payload.username,
-            password: payload.password,
+            manxb: payload.manxb,
+            tennxb: payload.tennxb,
+            diachi: payload.diachi,
         };
 
         // Remove undefined fields

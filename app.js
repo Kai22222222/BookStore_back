@@ -1,7 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const contactsRouter = require("./app/routes/contact.route");
-const ApiError = require("./app/api-error");
+const booksRouter = require("./app/routes/books.route");
+const nxbRouter = require("./app/routes/nxb.route");
+const nhanvienRouter = require("./app/routes/nhanvien.route");
+const ApiError = require("./app/api-error.js");
 
 const app = express();
 
@@ -10,11 +13,12 @@ app.use(express.json());
 
 
 app.use("/api/contacts", contactsRouter);
-
-
+app.use("/api/books", booksRouter);
+app.use("/api/nxb", nxbRouter);
+app.use("/api/nhanvien", nhanvienRouter);
 
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to contact book application." });
+    res.json({ message: "Welcome to contact book application@@@" });
 });
 
 //handle 404 response

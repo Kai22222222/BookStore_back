@@ -1,14 +1,17 @@
 const { ObjectId } = require("mongodb");
 
-class ContactService {
+class NhanVienService {
     constructor(client) {
-        this.Contact = client.db().collection("account");
+        this.Contact = client.db().collection("nhanvien");
     }
     //dinh nghia cac phuong thuc truy xuat csdl su dung mongodb api
     extractConactData(payload) {
         const contact = {
-            username: payload.username,
-            password: payload.password,
+            manv: payload.manv,
+            hoten: payload.hoten,
+            chucvu: payload.chucvu,
+            diachi: payload.diachi,
+            sodienthoai: payload.sodienthoai,
         };
 
         // Remove undefined fields
@@ -77,4 +80,4 @@ class ContactService {
 
 
 }
-module.exports = ContactService;
+module.exports = NhanVienService;

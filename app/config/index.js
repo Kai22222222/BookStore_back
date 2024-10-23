@@ -1,13 +1,14 @@
 const config = {
 
     app: {
-        port: process.env.PORT || 3000,
+        port: process.env.PORT || 3002,
     },
 
     db: {
-        uri: process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/contactbook"
+        uri: process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/bookkk"
     }
 
 };
+
 
 module.exports = config;

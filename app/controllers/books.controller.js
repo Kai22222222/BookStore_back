@@ -1,6 +1,8 @@
-const ContactService = require("../services/contact.service");
+const ContactService = require("../services/books.service");
 const MongoDB = require("../utils/mongodb.util");
 const ApiError = require("../api-error");
+
+
 exports.create = (req, res) => {
     res.send({ message: "create handler" });
 };
@@ -31,7 +33,7 @@ exports.findAllFavorite = (req, res) => {
 
 //create and save a new contact
 exports.create = async (req, res, next) => {
-    if (!req.body?.username) {
+    if (!req.body?.tensach) {
         return next(new ApiError(400, "Name can not be empty"));
     }
 
@@ -39,14 +41,19 @@ exports.create = async (req, res, next) => {
 
         const contactService = new ContactService(MongoDB.client);
         // Tạo một tài liệu mới với các trường name, username và password
-        const exitstingUser = await contactService.findOne({ username: req.body.username })
+        const exitstingUser = await contactService.findOne({ tensach: req.body.tensach })
         if (exitstingUser) {
-            res.send("user already exists.");
+            res.send("book already exists.");
         }
         else {
             const document = await contactService.create({
-                username: req.body.username,
-                password: req.body.password
+                masach: req.body.masach,
+                tensach: req.body.tensach,
+                dongia: req.body.dongia,
+                soquyen: req.body.soquyen,
+                namxuatban: req.body.namxuatban,
+                manxb: req.body.manxb,
+                tacgia: req.body.tacgia,
             });
             return res.send(document);
         }

@@ -1,6 +1,8 @@
-const ContactService = require("../services/contact.service");
+const NhanVienService = require("../services/nhanvien.service");
 const MongoDB = require("../utils/mongodb.util");
 const ApiError = require("../api-error");
+
+
 exports.create = (req, res) => {
     res.send({ message: "create handler" });
 };
@@ -31,22 +33,25 @@ exports.findAllFavorite = (req, res) => {
 
 //create and save a new contact
 exports.create = async (req, res, next) => {
-    if (!req.body?.username) {
+    if (!req.body?.hoten) {
         return next(new ApiError(400, "Name can not be empty"));
     }
 
     try {
 
-        const contactService = new ContactService(MongoDB.client);
+        const contactService = new NhanVienService(MongoDB.client);
         // Tạo một tài liệu mới với các trường name, username và password
-        const exitstingUser = await contactService.findOne({ username: req.body.username })
+        const exitstingUser = await contactService.findOne({ hoten: req.body.hoten })
         if (exitstingUser) {
-            res.send("user already exists.");
+            res.send("nhan vien already exists.");
         }
         else {
             const document = await contactService.create({
-                username: req.body.username,
-                password: req.body.password
+                manv: req.body.manv,
+                hoten: req.body.hoten,
+                chucvu: req.body.chucvu,
+                diachi: req.body.diachi,
+                sodienthoai: req.body.sodienthoai,
             });
             return res.send(document);
         }
@@ -63,7 +68,7 @@ exports.findAll = async (req, res, next) => {
     let documents = [];
 
     try {
-        const contactService = new ContactService(MongoDB.client);
+        const contactService = new NhanVienService(MongoDB.client);
         const { name } = req.query;
         if (name) {
             documents = await contactService.findByName(name);
