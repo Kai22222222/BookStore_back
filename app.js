@@ -5,13 +5,14 @@ const booksRouter = require("./app/routes/books.route");
 const nxbRouter = require("./app/routes/nxb.route");
 const nhanvienRouter = require("./app/routes/nhanvien.route");
 const ApiError = require("./app/api-error.js");
+const path = require('path');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-
+app.use('/app/uploads', express.static(path.join(__dirname, 'app/uploads')));
 app.use("/api/contacts", contactsRouter);
 app.use("/api/books", booksRouter);
 app.use("/api/nxb", nxbRouter);

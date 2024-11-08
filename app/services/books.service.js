@@ -14,6 +14,7 @@ class ContactService {
             namxuatban: payload.namxuatban,
             manxb: payload.manxb,
             tacgia: payload.tacgia,
+            avatar: payload.avatar
         };
 
         // Remove undefined fields

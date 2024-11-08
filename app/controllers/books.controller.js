@@ -36,7 +36,6 @@ exports.create = async (req, res, next) => {
     if (!req.body?.tensach) {
         return next(new ApiError(400, "Name can not be empty"));
     }
-
     try {
 
         const contactService = new ContactService(MongoDB.client);
@@ -54,6 +53,7 @@ exports.create = async (req, res, next) => {
                 namxuatban: req.body.namxuatban,
                 manxb: req.body.manxb,
                 tacgia: req.body.tacgia,
+                avatar: req.file.path,
             });
             return res.send(document);
         }
