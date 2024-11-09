@@ -3,6 +3,7 @@ const cors = require("cors");
 const contactsRouter = require("./app/routes/contact.route");
 const booksRouter = require("./app/routes/books.route");
 const nxbRouter = require("./app/routes/nxb.route");
+const borrowRouter = require("./app/routes/borrow.route");
 const nhanvienRouter = require("./app/routes/nhanvien.route");
 const ApiError = require("./app/api-error.js");
 const path = require('path');
@@ -17,6 +18,7 @@ app.use("/api/contacts", contactsRouter);
 app.use("/api/books", booksRouter);
 app.use("/api/nxb", nxbRouter);
 app.use("/api/nhanvien", nhanvienRouter);
+app.use("/api/borrow", borrowRouter);
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to contact book application@@@" });

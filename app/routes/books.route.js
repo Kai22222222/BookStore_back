@@ -4,7 +4,9 @@ const router = express.Router();
 const upload = require('../middleware/upload')
 router.route("/")
     .get(books.findAll)
-    .post(upload.single('avatar'), books.create);
+    .post(upload.single('avatar'), books.create)
+
 router.route("/:id")
     .get(books.findOne)
+    .put(books.update)
 module.exports = router;
