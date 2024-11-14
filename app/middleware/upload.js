@@ -16,8 +16,13 @@ var upload = multer({
     storage: storage,
     fileFilter: function (req, file, callback) {
         if (
-            file.mimetype === "image/png" ||
-            file.mimetype === "image/jpg"
+            "image/png",
+            "image/jpg",
+            "image/jpeg",  // Thêm định dạng jpg và jpeg
+            "image/gif",   // Thêm định dạng gif
+            "image/bmp",   // Thêm định dạng bmp
+            "image/webp",  // Thêm định dạng webp
+            "image/svg+xml"
         ) {
             callback(null, true);
         } else {

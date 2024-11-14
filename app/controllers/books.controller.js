@@ -79,7 +79,8 @@ exports.create = async (req, res, next) => {
         }
         else {
             const document = await contactService.create({
-                masach: req.body.masach,
+                mota: req.body.mota,
+                maloai: req.body.maloai,
                 tensach: req.body.tensach,
                 dongia: req.body.dongia,
                 soquyen: req.body.soquyen,
@@ -227,4 +228,3 @@ exports.checkLogIn = async (req, res, next) => {
         return next(new ApiError(500, "An error occurred while checking login"));
     }
 };
-

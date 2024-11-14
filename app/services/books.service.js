@@ -1,3 +1,4 @@
+
 const { ObjectId } = require("mongodb");
 
 class ContactService {
@@ -7,7 +8,8 @@ class ContactService {
     //dinh nghia cac phuong thuc truy xuat csdl su dung mongodb api
     extractConactData(payload) {
         const contact = {
-            masach: payload.masach,
+            maloai: payload.maloai,
+            mota: payload.mota,
             tensach: payload.tensach,
             dongia: payload.dongia,
             soquyen: payload.soquyen,
