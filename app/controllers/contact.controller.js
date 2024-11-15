@@ -46,7 +46,13 @@ exports.create = async (req, res, next) => {
         else {
             const document = await contactService.create({
                 username: req.body.username,
-                password: req.body.password
+                password: req.body.password,
+                ten: req.body.ten,
+                holot: req.body.holot,
+                ngaysinh: req.body.ngaysinh,
+                phai: req.body.phai,
+                diachi: req.body.diachi,
+                sdt: req.body.sdt,
             });
             return res.send(document);
         }
@@ -187,4 +193,5 @@ exports.checkLogIn = async (req, res, next) => {
         return next(new ApiError(500, "An error occurred while checking login"));
     }
 };
+
 

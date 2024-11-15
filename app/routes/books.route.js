@@ -9,4 +9,7 @@ router.route("/")
 router.route("/:id")
     .get(books.findOne)
     .put(books.update)
+
+router.route("/nxb/:manxb")
+    .get(books.findByPublisher)
 module.exports = router;

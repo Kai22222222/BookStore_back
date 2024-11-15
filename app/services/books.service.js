@@ -4,6 +4,7 @@ const { ObjectId } = require("mongodb");
 class ContactService {
     constructor(client) {
         this.Contact = client.db().collection("books");
+        this.Contact2 = client.db().collection("nxb");
     }
     //dinh nghia cac phuong thuc truy xuat csdl su dung mongodb api
     extractConactData(payload) {
@@ -16,7 +17,7 @@ class ContactService {
             namxuatban: payload.namxuatban,
             manxb: payload.manxb,
             tacgia: payload.tacgia,
-            avatar: payload.avatar
+            //  avatar: payload.avatar
         };
 
         // Remove undefined fields
@@ -42,6 +43,11 @@ class ContactService {
     async findByName(name) {
         return await this.find({
             name: { $regex: new RegExp(new RegExp(name)), $options: "i" },
+        });
+    }
+    async findByPublisher(manxb) {
+        return await this.find({
+            manxb: { $regex: new RegExp(new RegExp(manxb)), $options: "i" },
         });
     }
 

@@ -11,5 +11,6 @@ router.route("/:id")
     .put(nxb.update)
     .delete(nxb.delete);
 
-
+router.route("/find/:manxb")
+    .get(nxb.findByMaNXB)
 module.exports = router;

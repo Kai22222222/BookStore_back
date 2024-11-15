@@ -9,6 +9,12 @@ class ContactService {
         const contact = {
             username: payload.username,
             password: payload.password,
+            holot: payload.holot,
+            ten: payload.ten,
+            ngaysinh: payload.ngaysinh,
+            phai: payload.phai,
+            diachi: payload.diachi,
+            sdt: payload.sdt,
         };
 
         // Remove undefined fields

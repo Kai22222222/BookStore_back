@@ -142,7 +142,24 @@ exports.delete = async (req, res, next) => {
         );
     }
 };
-
+exports.findByMaNXB = async (req, res, next) => {
+    try {
+        const contactService = new ContactService(MongoDB.client);
+        const document = await contactService.findByMaNXB(req.params.manxb);
+        console.log(req.params.manxb)
+        if (!document) {
+            return next(new ApiError(404, "Contact not found222",));
+        }
+        return res.send(document);
+    } catch (error) {
+        return next(
+            new ApiError(
+                500,
+                `Error retrieving contact with id=${req.params.id}`
+            )
+        );
+    }
+};
 exports.findAllFavorite = async (req, res, next) => {
     try {
         const contactService = new ContactService(MongoDB.client);

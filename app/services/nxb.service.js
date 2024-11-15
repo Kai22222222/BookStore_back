@@ -63,7 +63,11 @@ class ContactService {
         });
         return result;
     }
-
+    async findByMaNXB(manxb) {
+        return await this.find({
+            manxb: { $regex: new RegExp(new RegExp(manxb)), $options: "i" },
+        });
+    }
     async findFavorite() {
         return await this.find({ favorite: true });
     }

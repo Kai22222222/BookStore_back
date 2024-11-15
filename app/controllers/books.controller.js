@@ -31,39 +31,7 @@ exports.findAllFavorite = (req, res) => {
     res.send({ message: "findAllFavorite handler" });
 };
 
-//create and save a new contact
-exports.create = async (req, res, next) => {
-    if (!req.body?.tensach) {
-        return next(new ApiError(400, "Name can not be empty"));
-    }
-    try {
 
-        const contactService = new ContactService(MongoDB.client);
-        // Tạo một tài liệu mới với các trường name, username và password
-        const exitstingUser = await contactService.findOne({ tensach: req.body.tensach })
-        if (exitstingUser) {
-            res.send("book already exists.");
-        }
-        else {
-            const document = await contactService.create({
-                masach: req.body.masach,
-                tensach: req.body.tensach,
-                dongia: req.body.dongia,
-                soquyen: req.body.soquyen,
-                namxuatban: req.body.namxuatban,
-                manxb: req.body.manxb,
-                tacgia: req.body.tacgia,
-                avatar: req.file.path,
-            });
-            return res.send(document);
-        }
-    } catch (error) {
-        console.error("Error in create method:", error);
-        return next(
-            new ApiError(500, "An error occurred while creating the contact")
-        );
-    }
-};
 
 exports.create = async (req, res, next) => {
     if (!req.body?.tensach) {
@@ -87,7 +55,7 @@ exports.create = async (req, res, next) => {
                 namxuatban: req.body.namxuatban,
                 manxb: req.body.manxb,
                 tacgia: req.body.tacgia,
-                avatar: req.file.path,
+                //  avatar: req.file.path,
             });
             return res.send(document);
         }
@@ -127,6 +95,24 @@ exports.findOne = async (req, res, next) => {
         const document = await contactService.findById(req.params.id);
         if (!document) {
             return next(new ApiError(404, "Contact not found"));
+        }
+        return res.send(document);
+    } catch (error) {
+        return next(
+            new ApiError(
+                500,
+                `Error retrieving contact with id=${req.params.id}`
+            )
+        );
+    }
+};
+exports.findByPublisher = async (req, res, next) => {
+    try {
+        const contactService = new ContactService(MongoDB.client);
+        const document = await contactService.findByPublisher(req.params.manxb);
+        console.log(req.params.manxb)
+        if (!document) {
+            return next(new ApiError(404, "Contact not found222",));
         }
         return res.send(document);
     } catch (error) {
