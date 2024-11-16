@@ -15,6 +15,7 @@ class ContactService {
             phai: payload.phai,
             diachi: payload.diachi,
             sdt: payload.sdt,
+            nhanvien: payload.nhanvien,
         };
 
         // Remove undefined fields
@@ -37,9 +38,9 @@ class ContactService {
         return await cursor.toArray();
     }
 
-    async findByName(name) {
+    async findByName(username) {
         return await this.find({
-            name: { $regex: new RegExp(new RegExp(name)), $options: "i" },
+            username: { $regex: new RegExp(new RegExp(username)), $options: "i" },
         });
     }
 

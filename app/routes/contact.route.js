@@ -15,7 +15,8 @@ router.route("/:id")
     .get(contacts.findOne)
     .put(contacts.update)
     .delete(contacts.delete);
-
+router.route("/user/:username")
+    .get(contacts.findByName)
 router.route("/login")
     .put(contacts.checkLogIn);
 

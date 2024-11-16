@@ -53,6 +53,7 @@ exports.create = async (req, res, next) => {
                 phai: req.body.phai,
                 diachi: req.body.diachi,
                 sdt: req.body.sdt,
+                nhanvien: req.body.nhanvien,
             });
             return res.send(document);
         }
@@ -150,6 +151,21 @@ exports.findAllFavorite = async (req, res, next) => {
     try {
         const contactService = new ContactService(MongoDB.client);
         const documents = await contactService.findFavorite();
+        return res.send(documents);
+    } catch (error) {
+        return next(
+            new ApiError(
+                500,
+                "An error occurred while retrieving favorite contacts"
+            )
+        );
+    }
+};
+
+exports.findByName = async (req, res, next) => {
+    try {
+        const contactService = new ContactService(MongoDB.client);
+        const documents = await contactService.findByName(req.params.username);
         return res.send(documents);
     } catch (error) {
         return next(

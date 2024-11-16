@@ -11,27 +11,19 @@ var storage = multer.diskStorage({
         cb(null, + Date.now() + ext); // Đường dẫn sẽ là "uploads/1729698525566.png"
     }
 });
-
 var upload = multer({
     storage: storage,
     fileFilter: function (req, file, callback) {
-        if (
-            "image/png",
-            "image/jpg",
-            "image/jpeg",  // Thêm định dạng jpg và jpeg
-            "image/gif",   // Thêm định dạng gif
-            "image/bmp",   // Thêm định dạng bmp
-            "image/webp",  // Thêm định dạng webp
-            "image/svg+xml"
-        ) {
+        const allowedTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif", "image/bmp", "image/webp", "image/svg+xml"];
+        if (allowedTypes.includes(file.mimetype)) {
             callback(null, true);
         } else {
-            console.log('only jpg & png file supported!');
+            console.log('only supported image types!');
             callback(null, false);
         }
     },
     limits: {
-        fileSize: 1024 * 1024 * 2 // 2 MB
+        fileSize: 1024 * 1024 * 2
     }
 });
 

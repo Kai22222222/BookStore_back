@@ -55,7 +55,7 @@ exports.create = async (req, res, next) => {
                 namxuatban: req.body.namxuatban,
                 manxb: req.body.manxb,
                 tacgia: req.body.tacgia,
-                //  avatar: req.file.path,
+                avatar: req.body.avatar,
             });
             return res.send(document);
         }
